@@ -1,0 +1,43 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport="false"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="over">
+    <img src="assets/images/cGrateLogo.PNG" class="img-responsive" width="350px" height="180" >
+    <mat-toolbar>cGrate Menu</mat-toolbar>
+    <mat-nav-list class="menuItems">
+      <br/>
+      <br/>
+      <br/>
+        <mat-list-item (click)="ViewEmployees()" ><mat-icon mat-list-icon>library_books</mat-icon><h4 mat-line (click)="ViewEmployees()">View Captured Employees</h4></mat-list-item>        
+        <mat-list-item (click)="CaptureEmployee()"><mat-icon mat-list-icon>supervised_user_circle</mat-icon><h4 mat-line (click)="CaptureEmployee()">Capture New Employee</h4></mat-list-item>
+      
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>cGrate International</span>
+      <span class="spacer"></span>
+      <div class="headerLastButton"><button  mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>assignment_ind</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>supervised_user_circle</mat-icon>
+          <span>Edit Profile</span>
+        </button>        
+        <button mat-menu-item (click)="Logout()">
+          <mat-icon>swap_horiz</mat-icon>
+          <span>Log Out</span>
+        </button>
+      </mat-menu></div>
+    </mat-toolbar>
+   <ng-content></ng-content> 
+  </mat-sidenav-content>
+</mat-sidenav-container>

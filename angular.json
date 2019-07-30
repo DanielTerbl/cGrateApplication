@@ -2,5 +2,169 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "cGrateCommon": {
+      "root": "projects/c-grate-common",
+      "sourceRoot": "projects/c-grate-common/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/c-grate-common/tsconfig.lib.json",
+            "project": "projects/c-grate-common/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/c-grate-common/src/test.ts",
+            "tsConfig": "projects/c-grate-common/tsconfig.spec.json",
+            "karmaConfig": "projects/c-grate-common/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/c-grate-common/tsconfig.lib.json",
+              "projects/c-grate-common/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "cGrateApp": {
+      "root": "projects/cGrateApp/",
+      "sourceRoot": "projects/cGrateApp/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/cGrateApp",
+            "index": "projects/cGrateApp/src/index.html",
+            "main": "projects/cGrateApp/src/main.ts",
+            "polyfills": "projects/cGrateApp/src/polyfills.ts",
+            "tsConfig": "projects/cGrateApp/tsconfig.app.json",
+            "assets": [
+              "projects/cGrateApp/src/favicon.ico",
+              "projects/cGrateApp/src/assets"
+            ],
+            "styles": [
+              "projects/cGrateApp/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/cGrateApp/src/environments/environment.ts",
+                  "with": "projects/cGrateApp/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "cGrateApp:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "cGrateApp:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "cGrateApp:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/cGrateApp/src/test.ts",
+            "polyfills": "projects/cGrateApp/src/polyfills.ts",
+            "tsConfig": "projects/cGrateApp/tsconfig.spec.json",
+            "karmaConfig": "projects/cGrateApp/karma.conf.js",
+            "styles": [
+              "projects/cGrateApp/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/cGrateApp/src/favicon.ico",
+              "projects/cGrateApp/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/cGrateApp/tsconfig.app.json",
+              "projects/cGrateApp/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "cGrateApp-e2e": {
+      "root": "projects/cGrateApp-e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/cGrateApp-e2e/protractor.conf.js",
+            "devServerTarget": "cGrateApp:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "cGrateApp:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/cGrateApp-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "cGrateCommon"
 }

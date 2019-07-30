@@ -1,0 +1,22 @@
+<app-c-grate-nav><label class="error" *ngIf="!noErrors">Error Occured Please try again later</label>
+  <loading-spinner *ngIf="loading"></loading-spinner>
+  <div *ngIf="noValues">
+    <img class="emptyImage img-responsive" src="assets/Images/empty.png"  />
+  </div>
+<div *ngIf="userList" class="cardContainer container-fluid" >
+  <mat-card class="example-card" *ngFor="let employee of userList">
+      <mat-card-header>
+       <mat-card-title> {{employee.name}} {{employee.surname}}</mat-card-title>        
+      </mat-card-header>
+      <img mat-card-image src="assets/images/{{employee.gender}}.png"  height="200" width="100" class="img-responsive" alt="">
+      <mat-card-content>
+        <p>
+         {{employee.notes}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>        
+        
+        <button mat-button (click)="openDialog(employee)">View Employee Bio</button>
+      </mat-card-actions>
+    </mat-card>
+  </div></app-c-grate-nav>

@@ -1,0 +1,18 @@
+.example-card {
+    width: 350px;
+    height: 500px;/*not working */
+    padding: 2%;
+    margin: 3%;
+    float: left;
+    position: relative;
+  }
+  
+  
+  .error{
+    color: red;
+  }
+  .emptyImage{
+    left: 30%;
+    top: 30%;
+    position: absolute;
+  }

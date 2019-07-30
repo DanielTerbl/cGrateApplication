@@ -1,0 +1,83 @@
+<app-c-grate-nav>  
+    <div class="page-wrapper bg-dark p-t-100 p-b-50">
+        <div class="wrapper wrapper--w900">
+            <div class="card card-6">
+                <div class="card-heading">
+                    <h2 class="title">Capture New Employee Details</h2>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                            <div class="form-row">
+                                    <div class="name">Employee ID</div>
+                                    <div class="value">
+                                        <input [(ngModel)]="newEmp.id" class="input--style-6" type="text" name="full_name">
+                                    </div>
+                                </div>
+                        <div class="form-row">
+                            <div class="name">Full name</div>
+                            <div class="value">
+                                <input [(ngModel)]="newEmp.name" class="input--style-6" type="text" name="full_name">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                                <div class="name">Surname</div>
+                                <div class="value">
+                                    <input [(ngModel)]="newEmp.surname" class="input--style-6" type="text" name="full_name">
+                                </div>
+                            </div>
+                        <div class="form-row">
+                            <div class="name">Email address</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input [(ngModel)]="newEmp.email" class="input--style-6" type="email" name="email" placeholder="example@email.com">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Notes</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <textarea [(ngModel)]="newEmp.notes" class="textarea--style-6" name="message" placeholder="User Notes"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                                <div class="name">Gender</div>
+                                <div class="value">
+                                    <div class="input-group">
+                                            <mat-form-field>
+                                                    <mat-select name="Gender" placeholder="Gender" [(ngModel)]="newEmp.gender">
+                                                        <mat-option *ngFor="let gender of keys(genders)" [value]="genders[gender]">{{genders[gender]}}</mat-option>
+                                                      </mat-select>          
+                                                </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                    <div class="name">Date Of Birth</div>
+                                    <div class="value">
+                                        <div class="input-group">
+                                                <mat-form-field>
+                                                        <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="newEmp.dateOfBirth" name="dummy">
+                                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                        <mat-datepicker touchUi #picker></mat-datepicker>
+                                                      </mat-form-field>
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                    </form>
+                </div>
+                
+                <div class="card-footer">
+                        <loading-spinner *ngIf="loading"></loading-spinner>
+                    <button class="btn btn--radius-2 btn--blue-2" (click)="captureEmp()">Capture</button>
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</app-c-grate-nav>
